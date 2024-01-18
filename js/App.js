@@ -33,29 +33,29 @@ class Calculator{
                 }
 
                 for(let i = 0; i < hightPriorityOrderCount; i++){
-                    // "20+10/10"
                     let quickExpressionCache = ''
                     let finalExpressionCache = ''
-                    let hightPriority = 0
+                    let foundTheOperator = false
                     let currentOperator = ''
-                    let toSolve = []
-                    let ended = false
+                    let n1 = null
+                    let solvedOneExpression = false
 
                     for(let j of expression){
-                        if(operators[j] && !ended){
-                            if(hightPriority === 1){
-                                toSolve.push(quickExpressionCache)
-                                finalExpressionCache += operators[currentOperator].solve( Number(toSolve[0]), Number(toSolve[1]))
-                                quickExpressionCache = j
-                                ended = true
+                        if(operators[j] && !solvedOneExpression){
+                            if(foundTheOperator){
+                                finalExpressionCache += operators[currentOperator].solve( Number(n1), Number(quickExpressionCache))
 
+                                quickExpressionCache = j
+
+                                solvedOneExpression = true
                                 continue;
                             }else if(operators[j].priority > 0){
+                                n1 = quickExpressionCache
                                 currentOperator = j
-                                toSolve.push(quickExpressionCache)
+
                                 quickExpressionCache = ''
 
-                                hightPriority += 1
+                                foundTheOperator = true
                                 continue;
 
                             }else if(operators[j].priority === 0){
@@ -76,29 +76,35 @@ class Calculator{
 
             function solveTheRest(){
                 for(let i = 0; i < normalPriorityOrderCount; i++){
-                    let ended = false
+                    let solvedOneExpression = false
+                    let foundTheOperator = false
                     let quickExpressionCache = ''
                     let finalExpressionCache = ''
                     let currentOperator = ''
-                    let toSolve = []
+                    let n1 = null
+
 
                     for(let j of expression){
-                        if(operators[j]){
-                            if(ended){
-                                toSolve.push(quickExpressionCache)
-                                console.log(operators[currentOperator].solve(toSolve[0], 3))
-                                console.log(operators[currentOperator].solve(toSolve[0], toSolve[1]))
+                        if(operators[j] && !solvedOneExpression){
+                            if(foundTheOperator){
+                                finalExpressionCache += operators[currentOperator].solve(Number(n1), Number(quickExpressionCache))
+                                quickExpressionCache = j
+
+                                solvedOneExpression = true
                                 continue;
                             }else{
-                                toSolve.push(quickExpressionCache)
+                                n1 = quickExpressionCache
                                 quickExpressionCache = ''
                                 currentOperator = j
-                                ended = true
+                                foundTheOperator = true
                             }
                         }else{
                             quickExpressionCache += j 
                         }
                     }
+
+                    finalExpressionCache += quickExpressionCache
+                    expression = finalExpressionCache
                 } 
             }
 
@@ -107,7 +113,7 @@ class Calculator{
             console.log(expression)
         }
 
-        solveASimpleExpression("10*80+10*4/2*10-100 ", this.operators)
+        solveASimpleExpression("5/10*5/60+6 ", this.operators)
     } 
 }
 
