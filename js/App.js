@@ -16,7 +16,6 @@ class Calculator{
     }
 
     get solveTheOperation(){
-        // 20+10*3/3
         function solveASimpleExpression(expression, operators){
             let hightPriorityOrderCount = 0
             let normalPriorityOrderCount = 0
@@ -110,10 +109,28 @@ class Calculator{
 
             solveTheRest()
 
-            console.log(expression)
+            return expression
         }
 
-        solveASimpleExpression("5/10*5/60+6 ", this.operators)
+        function solveAllExpressionBehindAParentheses(expression, operators){
+            let howManyParenthesesItHave = 0
+
+            for(let i of expression)
+                if(i === '(')
+                    howManyParenthesesItHave++
+                
+
+            for(let i = 1; i < howManyParenthesesItHave; i++){
+                let currentParenthesesCount = 0
+
+                // 70*((7+3)-10)/12
+                for(let j of expression){
+                        
+                }
+            }
+        }
+
+        solveAllExpressionBehindAParentheses("70*((7+3)-10)/12", this.operators)
     } 
 }
 
