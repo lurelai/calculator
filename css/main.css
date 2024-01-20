@@ -75,7 +75,7 @@ body, .container{
 
 
 /* especificy buttons style*/
-.button-clear{
+#clear{
     text-transform: uppercase;
 
     font-size: 28px;
@@ -83,7 +83,7 @@ body, .container{
     color: #D8591A;
 }
 
-.button-clear:hover{
+#clear:hover, #clear:hover{
     background-color: #333;
 }
 
@@ -95,15 +95,15 @@ body, .container{
     color: #5FC936;
 }
 
-.parentheses{
+#parentheses{
     font-size: 22px;
 }
 
-.minus, .plus{
+#minus, #plus{
     font-size: 25px;
 }
 
-.submit{
+#submit{
     font-size: 30px;
     background-color: #5FC936;
 }
