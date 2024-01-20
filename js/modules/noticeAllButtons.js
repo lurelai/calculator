@@ -8,12 +8,37 @@ export const noticeAllButtons = (button, operation)=>{
             "parentheses": (numbers)=>{
             },
             "divide": ()=>{ return text + '/' },
-            "times": ()=>{ return text + '*' },
+            "times": ()=>{ return text + 'X' },
             "plus": ()=>{ return text + '+' },
             "minus": ()=>{ return text + '-' },
             "submit": ()=>{ return text + '=' },
+
             "comma": ()=>{ 
-                return text + ","
+                const operatorsValues = ['+', '-', '*', '/']
+                let operatorCount = 0
+                let operatorCountCache = 0
+                let canAddAComma = true
+
+                for(let i of text)
+                    if(operatorsValues.includes(i))
+                        operatorCount++ 
+
+                for(let i of text){
+                    if(operatorsValues.includes(i))
+                        operatorCountCache++;                        
+                    
+                    console.log(operatorCountCache, operatorCount)
+                    if(operatorCountCache === operatorCount)
+                        if(i === ',')
+                            canAddAComma = false;
+
+                }
+
+                if(canAddAComma)
+                    return text + ","
+
+                else
+                    return text
             }
         }
     }
