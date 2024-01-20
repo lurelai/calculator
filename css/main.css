@@ -63,16 +63,32 @@ body, .container{
     background-color: #111;
 }
 
-.button:hover{
+.button:hover, .button:focus{
     cursor: pointer;
+    background-color: rgb(242, 91, 21, 0.8)
 }
 
+.button:active{
+    font-size: 30px;
+}
+
+
+
+/* especificy buttons style*/
 .button-clear{
     text-transform: uppercase;
 
     font-size: 28px;
 
     color: #D8591A;
+}
+
+.button-clear:hover{
+    background-color: #333;
+}
+
+.nothing:hover{
+    background-color: #111;
 }
 
 .button-operator{
