@@ -6,7 +6,7 @@ export const noticeAllButtons = (button, operation)=>{
         numbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         specials: {
             "parentheses": (numbers)=>{
-                const operatorsValues = ['+', '-', '*', '/']
+                const operatorsValues = ['+', '-', 'X', '/']
                 let openParenthesesCount = 0
                 let closeParenthesesCount = 0
 
@@ -44,11 +44,27 @@ export const noticeAllButtons = (button, operation)=>{
             "plus": ()=>{ return text + '+' },
             "minus": ()=>{ return text + '-' },
             "submit": ()=>{ 
-                return 'submit' 
+                let openParenthesesCount = 0
+                let closeParenthesesCount = 0
+
+                for(let i of text){
+                    if(i === '(')
+                        openParenthesesCount++
+
+                    if(i === ')')
+                        closeParenthesesCount++
+                }
+
+                if(openParenthesesCount !== closeParenthesesCount)
+                    return text
+
+                else
+                    return 'submit'
+
             },
 
             "comma": ()=>{ 
-                const operatorsValues = ['+', '-', '*', '/']
+                const operatorsValues = ['+', '-', 'X', '/']
                 let operatorCount = 0
                 let operatorCountCache = 0
                 let canAddAComma = true
