@@ -158,12 +158,13 @@ class Calculator{
             return expression.trim()
         }
 
-        const noParentheses = solveAllExpressionBetweenAParentheses("70*((17+3)-10)/(12(-2+2)) ", this.operators)
+        const noParentheses = solveAllExpressionBetweenAParentheses("70*((17+3)-10)/(12-(2+2)) ", this.operators)
+        return solveASimpleExpression(noParentheses, this.operators)
     } 
 }
 
 const calculator = new Calculator()
-calculator.solveTheOperation
+console.log(calculator.solveTheOperation, 'a')
 
 // 10+(60*3)/(2+(100/(100*0+100)))
 // 100*1 = 100
