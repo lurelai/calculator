@@ -144,7 +144,6 @@ class Calculator{
 
                             finalExpressionCache += solveASimpleExpression(currentExpressionCache+' ', operators)
                             currentParenthesesCount = null;
-                            continue;
                         }else
                             currentExpressionCache += j
                     }else{
@@ -158,8 +157,8 @@ class Calculator{
             return expression.trim()
         }
 
-        const noParentheses = solveAllExpressionBetweenAParentheses("70*((17+3)-10)/(12-(2+2)) ", this.operators)
-        return solveASimpleExpression(noParentheses, this.operators)
+        const noParentheses = solveAllExpressionBetweenAParentheses("70*20 ", this.operators)
+        return solveASimpleExpression(noParentheses+' ', this.operators)
     } 
 }
 
