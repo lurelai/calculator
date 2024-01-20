@@ -109,28 +109,56 @@ class Calculator{
 
             solveTheRest()
 
-            return expression
+            return expression.trim()
         }
 
-        function solveAllExpressionBehindAParentheses(expression, operators){
+        function solveAllExpressionBetweenAParentheses(expression, operators){
             let howManyParenthesesItHave = 0
 
             for(let i of expression)
                 if(i === '(')
                     howManyParenthesesItHave++
                 
+            let howManyParenthesesItHaveCache = howManyParenthesesItHave
 
-            for(let i = 1; i < howManyParenthesesItHave; i++){
+            for(let i = 0; i < howManyParenthesesItHave; i++){
                 let currentParenthesesCount = 0
+                let finalExpressionCache = ''
+                let currentExpressionCache = ''
+                let foundTheParenthesesToWork = false
 
-                // 70*((7+3)-10)/12
                 for(let j of expression){
-                        
+                    if(j === '(' && !foundTheParenthesesToWork){
+                        currentParenthesesCount++;
+
+                        if(currentParenthesesCount === howManyParenthesesItHaveCache)
+                            foundTheParenthesesToWork = true
+
+                        else
+                            finalExpressionCache += j
+
+                        continue;
+                    }else if(foundTheParenthesesToWork){
+                        if(j === ')'){
+                            foundTheParenthesesToWork = false
+
+                            finalExpressionCache += solveASimpleExpression(currentExpressionCache+' ', operators)
+                            currentParenthesesCount = null;
+                            continue;
+                        }else
+                            currentExpressionCache += j
+                    }else{
+                        finalExpressionCache += j
+                    }
                 }
+
+                expression = finalExpressionCache
+                howManyParenthesesItHaveCache--;
             }
+            return expression.trim()
         }
 
-        solveAllExpressionBehindAParentheses("70*((7+3)-10)/12", this.operators)
+        const noParentheses = solveAllExpressionBetweenAParentheses("70*((17+3)-10)/(12(-2+2)) ", this.operators)
     } 
 }
 
