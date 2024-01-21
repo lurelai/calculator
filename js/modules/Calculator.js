@@ -3,7 +3,6 @@ export class Calculator{
     
     constructor(){
         this.operation = ""
-        this.finalResult = "a"
         this.operators = {
             "+": { solve: (n1, n2)=>n1+n2, priority: 0 },
             "-": { solve: (n1, n2)=>n1-n2, priority: 0 },
@@ -13,6 +12,10 @@ export class Calculator{
             ")": { priority: 2 },
             " ": { priority: null} // Show the end of the operation
         } 
+    }
+
+    set setOperation(operationValue){
+        this.operation = operationValue+' '
     }
 
     get solveTheOperation(){
