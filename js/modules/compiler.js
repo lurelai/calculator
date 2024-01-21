@@ -9,6 +9,7 @@ export const operationCompiler = (operation)=>{
             "/": "/",
             "(": "(",
             ")": ")",
+            ',': '.'
         }
     }
     let finalValue = ''

@@ -22,7 +22,7 @@ const App = {
                         calculator.setOperation = operationCompiled
 
                         const operationResult = calculator.solveTheOperation
-                        view.changeOperation(operation, operationResult)
+                        view.verifyCommaAndChange(operation, operationResult)
                     }
 
                     else
